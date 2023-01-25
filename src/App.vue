@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import ParticipantList from './components/ParticipantList.vue';
+import Timer from './components/Timer.vue'
 
 </script>
 
@@ -11,6 +12,7 @@ import ParticipantList from './components/ParticipantList.vue';
 
     <main class="p-5">
       <ParticipantList />
+      <Timer />
     </main>
 
     <footer class="text-xs bottom-3 absolute left-1/2 translate-x-[-50%]">
