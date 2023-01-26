@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import ParticipantList from './components/ParticipantList.vue';
-import Timer from './components/Timer.vue'
+import Body from './components/Body.vue'
 
 </script>
 
@@ -10,10 +9,7 @@ import Timer from './components/Timer.vue'
       <h1 class="text-2xl md:text-4xl font-bold">Meeting Cost Calculator</h1>
     </header>
 
-    <main class="p-5">
-      <ParticipantList />
-      <Timer />
-    </main>
+    <Body />
 
     <footer class="text-xs bottom-3 absolute left-1/2 translate-x-[-50%]">
       Created by Kevin Tatooles
