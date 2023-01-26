@@ -1,6 +1,5 @@
-
 <script setup lang="ts">
-import ParticipantList from '../components/ParticipantList.vue';
+import ParticipantList from './ParticipantList.vue';
 import Time from './Time.vue'
 
 </script>
