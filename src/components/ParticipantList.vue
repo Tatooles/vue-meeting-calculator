@@ -1,12 +1,22 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+
+const participants = ref([
+  { role: 'Software Engineer', salary: '100,000' }
+]);
+
+participants.value.push({ role: 'Manager', salary: '120,000' });
 
 </script>
 
 <template>
   <ul>
-    <li>User 1</li>
-    <li>User 2</li>
-    <li>User 3</li>
-    <li>User 4</li>
+    <template v-for="participant in participants">
+      <li>
+        {{ participant.role }}, ${{ participant.salary }}
+      </li>
+
+    </template>
+    <button>+ Add User</button>
   </ul>
 </template>
