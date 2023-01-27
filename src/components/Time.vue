@@ -25,7 +25,7 @@ const setInput = () => {
   </div>
 
   <!-- This div contains just the time stuff -->
-  <div class="flex flex-col h-60 justify-center border-white border-2 border-t-0">
+  <div class="flex flex-col items-center justify-center h-60 border-white border-2 border-t-0">
     <Timer v-if="showTimer" />
     <TimeInput v-if="!showTimer" />
   </div>
