@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import ParticipantList from './ParticipantList.vue';
 import Time from './Time.vue'
+import Cost from './Cost.vue'
 
 </script>
 
 <template>
   <main class="p-5">
-    <!-- Tab navigation -->
+    <!-- List of meeting participants -->
     <ParticipantList />
+    <!-- Time value, wheter it's using the stopwatch or direct entry -->
     <Time />
-    <!-- Add another component for data entry, also need the total cost in there somewhere -->
+    <!-- Final cost value -->
+    <Cost />
   </main>
 </template>
