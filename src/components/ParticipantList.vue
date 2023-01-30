@@ -5,6 +5,8 @@ const roles = ref([
   { name: 'Software Engineer', salary: '100,000', count: 1 }
 ]);
 
+const modalOpen = ref(false);
+
 roles.value.push({ name: 'Manager', salary: '120,000', count: 1 });
 
 const increaseCount = (role: any) => {
@@ -35,8 +37,15 @@ const decreaseCount = (role: any) => {
           <button @click="increaseCount(role)">+</button>
         </div>
       </li>
-
     </template>
-    <button class="mb-2">+ Add Role</button>
   </ul>
+  <button class="mb-2" @click="modalOpen = true">+ Add Role</button>
+  <teleport to="body">
+    <div v-if="modalOpen" class="absolute left-1/2 translate-x-[-50%] top-1/3 bg-white p-5 rounded-md z-10 text-center">
+      <h1>Placeholder Header</h1>
+      <p>Placeholder body</p>
+      <button @click="modalOpen = false">Close</button>
+    </div>
+    <div v-if="modalOpen" class="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50"></div>
+  </teleport>
 </template>
