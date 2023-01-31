@@ -2,12 +2,12 @@
 import { ref } from 'vue';
 
 const roles = ref([
-  { name: 'Software Engineer', salary: '100,000', count: 1 }
+  { name: 'Software Engineer', salary: 100000, count: 1 }
 ]);
 
 const modalOpen = ref(false);
 
-roles.value.push({ name: 'Manager', salary: '120,000', count: 1 });
+roles.value.push({ name: 'Manager', salary: 120000, count: 1 });
 
 const increaseCount = (role: any) => {
   const found = roles.value.find(element => element === role);
@@ -34,7 +34,7 @@ const decreaseCount = (role: any) => {
           {{ role.name }}
         </div>
         <div>
-          ${{ role.salary }}
+          ${{ new Intl.NumberFormat().format(role.salary) }}
         </div>
         <div>
           <button @click="decreaseCount(role)">-</button>
