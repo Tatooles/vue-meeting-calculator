@@ -10,11 +10,17 @@ const modalOpen = ref(false);
 roles.value.push({ name: 'Manager', salary: '120,000', count: 1 });
 
 const increaseCount = (role: any) => {
-  console.log(`Increasing count of ${role.name}`);
+  const found = roles.value.find(element => element === role);
+  if (found) found.count++;
 }
 
 const decreaseCount = (role: any) => {
-  console.log(`Decreasing count of ${role.name}`);
+  const found = roles.value.find(element => element === role);
+  if (found) found.count--;
+  // Remove role if none left (TODO: Would be it's own event if user has the option for text entry)
+  if (found?.count === 0) {
+    roles.value = roles.value.filter(element => element !== role);
+  }
 }
 
 </script>
