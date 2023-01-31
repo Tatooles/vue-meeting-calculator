@@ -7,6 +7,10 @@ const roles = ref([
 
 const modalOpen = ref(false);
 
+const newRoleName = ref('');
+const newRoleSalary = ref('');
+const salaryValidationError = ref(true);
+
 roles.value.push({ name: 'Manager', salary: 120000, count: 1 });
 
 const increaseCount = (role: any) => {
@@ -21,6 +25,21 @@ const decreaseCount = (role: any) => {
   if (found?.count === 0) {
     roles.value = roles.value.filter(element => element !== role);
   }
+}
+
+const closeModal = (save: boolean) => {
+  if (save) {
+    // Save the data
+    if (isNaN(parseInt(newRoleSalary.value))) {
+      console.log('Please enter a valid number');
+      return;
+    }
+    roles.value.push({ name: newRoleName.value, salary: parseInt(newRoleSalary.value), count: 1 });
+  }
+  modalOpen.value = false;
+  newRoleName.value = '';
+  newRoleSalary.value = '';
+  // Clear the fields
 }
 
 </script>
@@ -52,11 +71,13 @@ const decreaseCount = (role: any) => {
       <!-- TODO: Could pass all of this into a reusable modal component with 'slots' -->
       <!-- TODO: Would be nice to have an X button in the top right -->
       <h1 class="text-2xl mb-2">Add a New Role</h1>
-      <input type="text" placeholder="Role Name" class="mb-2 p-1 border-2">
-      <input type="text" placeholder="Role Salary" class="mb-2 p-1 border-2">
+      <form action="">
+        <input v-model="newRoleName" type="text" placeholder="Role Name" class="mb-2 p-1 border-2">
+        <input v-model="newRoleSalary" type="text" placeholder="Role Salary" class="mb-2 p-1 border-2">
+      </form>
       <div>
-        <button @click="modalOpen = false" class="p-2 border-black rounded-lg">Cancel</button>
-        <button @click="modalOpen = false"
+        <button @click="closeModal(false)" class="p-2 border-black rounded-lg">Cancel</button>
+        <button @click="closeModal(true)"
           class="p-2 border-black bg-blue-600 rounded-lg text-white ml-4">Submit</button>
       </div>
     </div>
