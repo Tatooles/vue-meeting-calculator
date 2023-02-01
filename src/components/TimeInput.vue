@@ -1,9 +1,17 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+
+const hours = ref('');
+const minutes = ref('');
 
 </script>
 
 <template>
-  <h3 class="mb-3 text-lg">Enter Meeting Length:</h3>
-  <input type="text" placeholder="HH:MM" class="text-center text-4xl border-2 border-white h-2/5 w-3/4 bg-inherit">
-  <button class="mt-3 rounded-lg border-2 border-white p-2">Submit</button>
+  <h3 class="mb-6 text-lg">Enter Meeting Length:</h3>
+  <div class="flex h-2/5 justify-center">
+    <input v-model="hours" type="text" placeholder="HH"
+      class="text-center text-4xl border-2 border-white w-1/3 bg-inherit mr-6">
+    <input v-model="minutes" type="text" placeholder="MM"
+      class="text-center text-4xl border-2 border-white w-1/3 bg-inherit">
+  </div>
 </template>
