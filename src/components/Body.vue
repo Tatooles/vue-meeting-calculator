@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import ParticipantList from './ParticipantList.vue';
-import Time from './Time.vue'
-import Cost from './Cost.vue'
-
+import ParticipantList from "./ParticipantList.vue";
+import Time from "./Time.vue";
+import Cost from "./Cost.vue";
 </script>
 
 <template>

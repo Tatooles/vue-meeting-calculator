@@ -1,31 +1,29 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from "vue";
 
-const roles = ref([
-  { name: 'Software Engineer', salary: 100000, count: 1 }
-]);
+const roles = ref([{ name: "Software Engineer", salary: 100000, count: 1 }]);
 
 const modalOpen = ref(false);
 
-const newRoleName = ref('');
-const newRoleSalary = ref('');
+const newRoleName = ref("");
+const newRoleSalary = ref("");
 const salaryValidationError = ref(false);
 
-roles.value.push({ name: 'Manager', salary: 120000, count: 1 });
+roles.value.push({ name: "Manager", salary: 120000, count: 1 });
 
 const increaseCount = (role: any) => {
-  const found = roles.value.find(element => element === role);
+  const found = roles.value.find((element) => element === role);
   if (found) found.count++;
-}
+};
 
 const decreaseCount = (role: any) => {
-  const found = roles.value.find(element => element === role);
+  const found = roles.value.find((element) => element === role);
   if (found) found.count--;
   // Remove role if none left (TODO: Would be it's own event if user has the option for text entry)
   if (found?.count === 0) {
-    roles.value = roles.value.filter(element => element !== role);
+    roles.value = roles.value.filter((element) => element !== role);
   }
-}
+};
 
 const closeModal = (save: boolean) => {
   if (save) {
@@ -34,35 +32,39 @@ const closeModal = (save: boolean) => {
       return;
     }
     // Save the data
-    roles.value.push({ name: newRoleName.value, salary: parseInt(newRoleSalary.value), count: 1 });
+    roles.value.push({
+      name: newRoleName.value,
+      salary: parseInt(newRoleSalary.value),
+      count: 1,
+    });
   }
   modalOpen.value = false;
-  newRoleName.value = '';
-  newRoleSalary.value = '';
+  newRoleName.value = "";
+  newRoleSalary.value = "";
   // Clear the fields
-}
+};
 
 const validateSalary = () => {
-  if (newRoleSalary.value.length !== 0 && isNaN(parseInt(newRoleSalary.value))) {
+  if (
+    newRoleSalary.value.length !== 0 &&
+    isNaN(parseInt(newRoleSalary.value))
+  ) {
     salaryValidationError.value = true;
   } else {
     salaryValidationError.value = false;
   }
-}
-
+};
 </script>
 
 <template>
   <ul>
     <template v-for="role in roles">
       <!-- TODO: Also need a way to remove a role from the list -->
-      <li class="border-2 border-white mb-2 flex justify-between p-2">
+      <li class="mb-2 flex justify-between border-2 border-white p-2">
         <div>
           {{ role.name }}
         </div>
-        <div>
-          ${{ new Intl.NumberFormat().format(role.salary) }}
-        </div>
+        <div>${{ new Intl.NumberFormat().format(role.salary) }}</div>
         <div>
           <button @click="decreaseCount(role)">-</button>
           {{ role.count }}
@@ -74,23 +76,46 @@ const validateSalary = () => {
   </ul>
   <button class="mb-2" @click="modalOpen = true">+ Add Role</button>
   <teleport to="body">
-    <div v-if="modalOpen"
-      class="absolute left-1/2 translate-x-[-50%] top-32 bg-white p-5 rounded-md z-10 flex flex-col items-center">
+    <div
+      v-if="modalOpen"
+      class="absolute left-1/2 top-32 z-10 flex translate-x-[-50%] flex-col items-center rounded-md bg-white p-5"
+    >
       <!-- TODO: Could pass all of this into a reusable modal component with 'slots' -->
       <!-- TODO: Would be nice to have an X button in the top right -->
-      <h1 class="text-2xl mb-2">Add a New Role</h1>
+      <h1 class="mb-2 text-2xl">Add a New Role</h1>
       <form action="">
-        <input v-model="newRoleName" type="text" placeholder="Role Name" class="mb-2 p-1 border-2">
-        <input v-model="newRoleSalary" @input="validateSalary" type="text" placeholder="Role Salary"
-          class="p-1 border-2">
-        <p v-if="salaryValidationError" class="text-sm text-red-500">Please enter a valid number</p>
+        <input
+          v-model="newRoleName"
+          type="text"
+          placeholder="Role Name"
+          class="mb-2 border-2 p-1"
+        />
+        <input
+          v-model="newRoleSalary"
+          @input="validateSalary"
+          type="text"
+          placeholder="Role Salary"
+          class="border-2 p-1"
+        />
+        <p v-if="salaryValidationError" class="text-sm text-red-500">
+          Please enter a valid number
+        </p>
       </form>
       <div class="mt-2">
-        <button @click="closeModal(false)" class="p-2 border-black rounded-lg">Cancel</button>
-        <button @click="closeModal(true)"
-          class="p-2 border-black bg-blue-600 rounded-lg text-white ml-4">Submit</button>
+        <button @click="closeModal(false)" class="rounded-lg border-black p-2">
+          Cancel
+        </button>
+        <button
+          @click="closeModal(true)"
+          class="ml-4 rounded-lg border-black bg-blue-600 p-2 text-white"
+        >
+          Submit
+        </button>
       </div>
     </div>
-    <div v-if="modalOpen" class="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-70"></div>
+    <div
+      v-if="modalOpen"
+      class="fixed top-0 left-0 h-screen w-screen bg-black bg-opacity-70"
+    ></div>
   </teleport>
 </template>
