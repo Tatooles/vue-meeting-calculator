@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { store } from "../store.js";
 
 const roles = ref([{ name: "Software Engineer", salary: 100000, count: 1 }]);
 
@@ -13,7 +14,10 @@ roles.value.push({ name: "Manager", salary: 120000, count: 1 });
 
 const increaseCount = (role: any) => {
   const found = roles.value.find((element) => element === role);
-  if (found) found.count++;
+  if (found) {
+    found.count++;
+    updateStore();
+  }
 };
 
 const decreaseCount = (role: any) => {
@@ -23,6 +27,7 @@ const decreaseCount = (role: any) => {
   if (found?.count === 0) {
     roles.value = roles.value.filter((element) => element !== role);
   }
+  updateStore();
 };
 
 const closeModal = (save: boolean) => {
@@ -37,6 +42,7 @@ const closeModal = (save: boolean) => {
       salary: parseInt(newRoleSalary.value),
       count: 1,
     });
+    updateStore();
   }
   modalOpen.value = false;
   newRoleName.value = "";
@@ -53,6 +59,15 @@ const validateSalary = () => {
   } else {
     salaryValidationError.value = false;
   }
+};
+
+const updateStore = () => {
+  let totalHourly = 0;
+  roles.value.forEach((role) => {
+    // Assuming 52 weeks per year at 40 hours per week (52 * 40 = 2080)
+    totalHourly += (role.salary * role.count) / 2080;
+  });
+  store.setHourly(totalHourly);
 };
 </script>
 

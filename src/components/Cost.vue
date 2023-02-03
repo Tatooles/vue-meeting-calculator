@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { store } from "../store.js";
 
 const cost = ref(1000);
 </script>
@@ -10,5 +11,7 @@ const cost = ref(1000);
     <h1 class="text-6xl text-red-500">
       ${{ new Intl.NumberFormat().format(cost) }}
     </h1>
+    <p>Hourly: {{ store.hourly }}</p>
+    <p>Time: {{ store.time }}</p>
   </div>
 </template>
