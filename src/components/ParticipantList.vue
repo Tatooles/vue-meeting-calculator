@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { store } from "../store.js";
 
 const roles = ref([{ name: "Software Engineer", salary: 100000, count: 1 }]);
@@ -69,6 +69,10 @@ const updateStore = () => {
   });
   store.setHourly(totalHourly);
 };
+
+onMounted(() => {
+  updateStore();
+});
 </script>
 
 <template>

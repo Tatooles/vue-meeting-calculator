@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { store } from "../store.js";
 
 const hours = ref("");
 const minutes = ref("");
@@ -12,6 +13,13 @@ const validateNumber = () => {
   ) {
     validationError.value = true;
   } else {
+    if (hours.value.length === 0) {
+      store.setTime(parseInt(minutes.value) / 60);
+    } else if (minutes.value.length === 0) {
+      store.setTime(parseInt(hours.value));
+    } else {
+      store.setTime(parseInt(hours.value) + parseInt(minutes.value) / 60);
+    }
     validationError.value = false;
   }
 };
