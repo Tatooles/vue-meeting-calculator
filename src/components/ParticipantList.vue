@@ -78,13 +78,16 @@ onMounted(() => {
 <template>
   <ul>
     <template v-for="role in roles">
-      <!-- TODO: Also need a way to remove a role from the list -->
-      <li class="mb-2 flex justify-between border-2 border-white p-2">
-        <div>
+      <li class="mb-2 flex border-2 border-white p-2">
+        <div
+          class="w-3/5 overflow-hidden overflow-ellipsis whitespace-nowrap text-start"
+        >
           {{ role.name }}
         </div>
-        <div>${{ new Intl.NumberFormat().format(role.salary) }}</div>
-        <div>
+        <div class="w-2/5 text-end">
+          ${{ new Intl.NumberFormat().format(role.salary) }}
+        </div>
+        <div class="w-1/5 text-end">
           <button @click="decreaseCount(role)">-</button>
           {{ role.count }}
           <!-- TODO: Also want to be able to directly enter a value for this -->
