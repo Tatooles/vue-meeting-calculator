@@ -7,6 +7,7 @@ const minutes = ref("");
 const validationError = ref(false);
 
 const validateNumber = () => {
+  // TODO: Make sure they cannot enter a value over 99
   if (
     (hours.value.length !== 0 && isNaN(parseInt(hours.value))) ||
     (minutes.value.length !== 0 && isNaN(parseInt(minutes.value)))

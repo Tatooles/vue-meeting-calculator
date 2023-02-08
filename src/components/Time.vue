@@ -42,7 +42,14 @@ const setInput = () => {
   <div
     class="flex h-60 flex-col items-center justify-center border-2 border-t-0 border-white"
   >
-    <Timer v-if="showTimer" />
-    <TimeInput v-if="!showTimer" />
+    <div v-show="showTimer">
+      <Timer />
+    </div>
+    <div
+      v-show="!showTimer"
+      class="flex h-60 flex-col items-center justify-center"
+    >
+      <TimeInput />
+    </div>
   </div>
 </template>
