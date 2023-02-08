@@ -2,16 +2,20 @@
 import { ref } from "vue";
 import Timer from "./Timer.vue";
 import TimeInput from "./TimeInput.vue";
+import { store } from "../store.js";
 
 // Need a bit of boolean state to hold which tab to display, these functions will toggle that
 const showTimer = ref(true);
 
 const setTimer = () => {
   showTimer.value = true;
+  store.setUseTimer(true);
+  // Will need to update the value from the store, or use v-show instead of v-if
 };
 
 const setInput = () => {
   showTimer.value = false;
+  store.setUseTimer(false);
 };
 </script>
 

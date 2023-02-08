@@ -1,8 +1,21 @@
 <script setup lang="ts">
 import { useStopwatch } from "vue-timer-hook";
-import { computed } from "vue";
+import { computed, watch } from "vue";
+import { store } from "../store.js";
 
 const stopwatch = useStopwatch(0, false);
+
+watch(stopwatch.seconds, async () => {
+  store.setTimerSeconds(stopwatch.seconds);
+});
+
+watch(stopwatch.minutes, async () => {
+  store.setTimerMinutes(stopwatch.minutes);
+});
+
+watch(stopwatch.hours, async () => {
+  store.setTimerHours(stopwatch.hours);
+});
 
 // Computed values so we always have a 2 digit number
 const hourLeft = computed(() => {
