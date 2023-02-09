@@ -7,7 +7,6 @@ const minutes = ref("");
 const validationError = ref(false);
 
 const validateNumber = () => {
-  // TODO: Make sure they cannot enter a value over 99
   const hoursValue = parseInt(hours.value);
   const minutesValue = parseInt(minutes.value);
   if (
@@ -16,10 +15,12 @@ const validateNumber = () => {
     hoursValue > 99 ||
     minutesValue > 99
   ) {
+    // Invalid number
     validationError.value = true;
   } else if (hours.value.length === 0 && minutes.value.length === 0) {
     // User has emptied the input fields
     store.setTime(0);
+    validationError.value = false;
   } else {
     if (hours.value.length === 0) {
       store.setTime(parseInt(minutes.value) / 60);
