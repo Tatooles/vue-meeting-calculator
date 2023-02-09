@@ -8,11 +8,18 @@ const validationError = ref(false);
 
 const validateNumber = () => {
   // TODO: Make sure they cannot enter a value over 99
+  const hoursValue = parseInt(hours.value);
+  const minutesValue = parseInt(minutes.value);
   if (
-    (hours.value.length !== 0 && isNaN(parseInt(hours.value))) ||
-    (minutes.value.length !== 0 && isNaN(parseInt(minutes.value)))
+    (hours.value.length !== 0 && isNaN(hoursValue)) ||
+    (minutes.value.length !== 0 && isNaN(minutesValue)) ||
+    hoursValue > 99 ||
+    minutesValue > 99
   ) {
     validationError.value = true;
+  } else if (hours.value.length === 0 && minutes.value.length === 0) {
+    // User has emptied the input fields
+    store.setTime(0);
   } else {
     if (hours.value.length === 0) {
       store.setTime(parseInt(minutes.value) / 60);
