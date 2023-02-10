@@ -7,13 +7,19 @@ const minutes = ref("");
 const validationError = ref(false);
 
 const validateNumber = () => {
+  // Limit length of input
+  if (hours.value.length > 2) {
+    hours.value = hours.value.slice(0, 2);
+  } else if (minutes.value.length > 2) {
+    minutes.value = minutes.value.slice(0, 2);
+  }
+
+  // Validate that input
   const hoursValue = parseInt(hours.value);
   const minutesValue = parseInt(minutes.value);
   if (
     (hours.value.length !== 0 && isNaN(hoursValue)) ||
-    (minutes.value.length !== 0 && isNaN(minutesValue)) ||
-    hoursValue > 99 ||
-    minutesValue > 99
+    (minutes.value.length !== 0 && isNaN(minutesValue))
   ) {
     // Invalid number
     validationError.value = true;
@@ -23,11 +29,11 @@ const validateNumber = () => {
     validationError.value = false;
   } else {
     if (hours.value.length === 0) {
-      store.setTime(parseInt(minutes.value) / 60);
+      store.setTime(minutesValue / 60);
     } else if (minutes.value.length === 0) {
-      store.setTime(parseInt(hours.value));
+      store.setTime(hoursValue);
     } else {
-      store.setTime(parseInt(hours.value) + parseInt(minutes.value) / 60);
+      store.setTime(hoursValue + minutesValue / 60);
     }
     validationError.value = false;
   }
@@ -52,7 +58,8 @@ const validateNumber = () => {
       class="w-1/3 border-2 border-white bg-inherit text-center text-4xl"
     />
   </div>
-  <p v-if="validationError" class="mt-3 text-red-500">
+  <!-- TODO: Stop this from shifting the whole thing -->
+  <p v-show="validationError" class="mt-3 text-red-500">
     Please enter a valid number
   </p>
 </template>
