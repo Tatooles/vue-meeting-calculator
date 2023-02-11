@@ -5,21 +5,6 @@ import { store } from "../store.js";
 
 const stopwatch = useStopwatch(0, false);
 
-const running = ref(false);
-
-const startTime = () => {
-  stopwatch.start;
-  console.log("called start");
-  console.log(stopwatch.isRunning.value);
-  running.value = true;
-};
-
-const stopTime = () => {
-  stopwatch.pause;
-  console.log("called stop");
-  running.value = false;
-};
-
 watch(stopwatch.seconds, async () => {
   store.setTimerSeconds(stopwatch.seconds);
 });
@@ -48,10 +33,10 @@ const minuteRight = computed(() => {
 });
 
 const secondLeft = computed(() => {
+  console.log("second", stopwatch.seconds.value);
   return Math.floor(stopwatch.seconds.value / 10);
 });
 const secondRight = computed(() => {
-  console.log("computing second");
   return stopwatch.seconds.value % 10;
 });
 </script>
@@ -63,10 +48,9 @@ const secondRight = computed(() => {
     }}{{ secondRight }}
   </h1>
   <div class="mt-4 flex flex-row justify-center">
-    <!-- TODO: It's buggy af when they press start multiple times, prevent that behavior -->
     <button
       v-show="!stopwatch.isRunning.value"
-      @click="stopwatch.start"
+      @click="stopwatch.start()"
       class="mr-4 rounded-md border-2 border-white p-2"
     >
       Start
@@ -80,7 +64,7 @@ const secondRight = computed(() => {
 
     <button
       v-show="stopwatch.isRunning.value"
-      @click="stopwatch.pause"
+      @click="stopwatch.pause()"
       class="rounded-md border-2 border-white p-2"
     >
       Stop
@@ -92,4 +76,10 @@ const secondRight = computed(() => {
       Stop
     </button>
   </div>
+  <button
+    @click="stopwatch.reset()"
+    class="mt-4 rounded-md border-2 border-white p-2"
+  >
+    Reset
+  </button>
 </template>
