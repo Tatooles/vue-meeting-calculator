@@ -7,7 +7,9 @@ import Body from "./components/Body.vue";
     class="relative mx-auto flex min-h-screen w-full flex-col bg-zinc-900 p-5 text-center text-white md:w-3/4"
   >
     <header>
-      <h1 class="text-2xl font-bold md:text-4xl">Meeting Cost Calculator</h1>
+      <h1 class="mb-5 text-2xl font-bold md:text-4xl">
+        Meeting Cost Calculator
+      </h1>
     </header>
 
     <Body />
