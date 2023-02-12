@@ -10,7 +10,7 @@ const formatter = new Intl.NumberFormat(undefined, {
 <template>
   <div class="mt-6 mb-4 flex flex-col align-middle">
     <h3 class="mb-4 text-2xl">Total Cost</h3>
-    <h1 v-if="store.useTimer" class="text-6xl text-red-500">
+    <h1 v-if="store.useTimer" class="text-6xl text-red-500 md:text-7xl">
       {{
         formatter.format(
           store.hourly *
@@ -20,7 +20,7 @@ const formatter = new Intl.NumberFormat(undefined, {
         )
       }}
     </h1>
-    <h1 v-else class="text-6xl text-red-500">
+    <h1 v-else class="text-6xl text-red-500 md:text-7xl">
       {{ formatter.format(store.hourly * store.time) }}
     </h1>
   </div>
