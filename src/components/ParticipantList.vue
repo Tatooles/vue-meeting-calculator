@@ -105,7 +105,7 @@ onMounted(() => {
       <!-- TODO: Could pass all of this into a reusable modal component with 'slots' -->
       <!-- TODO: Would be nice to have an X button in the top right -->
       <h1 class="mb-2 text-2xl">Add a New Role</h1>
-      <form action="">
+      <form class="flex flex-col">
         <input
           v-model="newRoleName"
           type="text"
