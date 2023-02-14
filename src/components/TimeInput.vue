@@ -42,7 +42,7 @@ const validateNumber = () => {
 
 <template>
   <h3 class="mb-6 text-lg">Enter Meeting Length:</h3>
-  <div class="flex h-2/5 justify-center">
+  <div class="mb-6 flex h-2/5 justify-center">
     <input
       v-model="hours"
       @input="validateNumber"
@@ -59,7 +59,7 @@ const validateNumber = () => {
     />
   </div>
   <!-- TODO: Stop this from shifting the whole thing -->
-  <p v-show="validationError" class="mt-3 text-red-500">
+  <p v-show="validationError" class="absolute mt-3 translate-y-20 text-red-500">
     Please enter a valid number
   </p>
 </template>
