@@ -33,7 +33,6 @@ const decreaseCount = (role: any) => {
 const closeModal = (save: boolean) => {
   if (save) {
     if (newRoleName.value.length === 0 || newRoleSalary.value.length === 0) {
-      // TODO: Could add more validation here
       return;
     }
     // Save the data
@@ -44,10 +43,10 @@ const closeModal = (save: boolean) => {
     });
     updateStore();
   }
+  // Clear the fields
   modalOpen.value = false;
   newRoleName.value = "";
   newRoleSalary.value = "";
-  // Clear the fields
 };
 
 const validateSalary = () => {
@@ -104,12 +103,15 @@ onMounted(() => {
     >
       <!-- TODO: Could pass all of this into a reusable modal component with 'slots' -->
       <!-- TODO: Would be nice to have an X button in the top right -->
-      <div class="absolute mr-6 mb-5 w-full text-end">
-        <button @click="closeModal(false)" class="rounded-md border-2 p-1">
+      <div class="absolute mr-8 mb-5 w-full text-end">
+        <button
+          @click="closeModal(false)"
+          class="rounded-md border-2 p-[2px] shadow-sm hover:bg-neutral-200"
+        >
           X
         </button>
       </div>
-      <h1 class="mb-2 text-2xl">Add a New Role</h1>
+      <h1 class="mb-2 mt-4 text-2xl">Add a New Role</h1>
       <form class="flex flex-col">
         <input
           v-model="newRoleName"
