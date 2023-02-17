@@ -104,6 +104,11 @@ onMounted(() => {
     >
       <!-- TODO: Could pass all of this into a reusable modal component with 'slots' -->
       <!-- TODO: Would be nice to have an X button in the top right -->
+      <div class="absolute mr-6 mb-5 w-full text-end">
+        <button @click="closeModal(false)" class="rounded-md border-2 p-1">
+          X
+        </button>
+      </div>
       <h1 class="mb-2 text-2xl">Add a New Role</h1>
       <form class="flex flex-col">
         <input
