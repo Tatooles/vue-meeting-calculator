@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { store } from "../store.js";
+import { onClickOutside } from "@vueuse/core";
 
 const roles = ref([{ name: "Software Engineer", salary: 100000, count: 1 }]);
 
 const modalOpen = ref(false);
+const modal = ref(null);
+
+onClickOutside(modal, () => closeModal(false));
 
 const newRoleName = ref("");
 const newRoleSalary = ref("");
@@ -103,6 +107,7 @@ onMounted(() => {
         class="fixed top-0 left-0 h-screen w-screen bg-black bg-opacity-70"
       >
         <div
+          ref="modal"
           class="absolute left-1/2 top-32 z-10 flex translate-x-[-50%] flex-col items-center rounded-md bg-white p-5"
         >
           <div class="absolute mr-8 mb-5 w-full text-end">
