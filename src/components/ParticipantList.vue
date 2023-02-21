@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { store } from "../store.js";
+import { onClickOutside } from "@vueuse/core";
 
 const roles = ref([{ name: "Software Engineer", salary: 100000, count: 1 }]);
 
 const modalOpen = ref(false);
+const modal = ref(null);
+
+onClickOutside(modal, () => closeModal(false));
 
 const newRoleName = ref("");
 const newRoleSalary = ref("");
@@ -33,7 +37,6 @@ const decreaseCount = (role: any) => {
 const closeModal = (save: boolean) => {
   if (save) {
     if (newRoleName.value.length === 0 || newRoleSalary.value.length === 0) {
-      // TODO: Could add more validation here
       return;
     }
     // Save the data
@@ -44,10 +47,10 @@ const closeModal = (save: boolean) => {
     });
     updateStore();
   }
+  // Clear the fields
   modalOpen.value = false;
   newRoleName.value = "";
   newRoleSalary.value = "";
-  // Clear the fields
 };
 
 const validateSalary = () => {
@@ -97,47 +100,71 @@ onMounted(() => {
     </template>
   </ul>
   <button class="mb-2" @click="modalOpen = true">+ Add Role</button>
-  <teleport to="body">
-    <div
-      v-if="modalOpen"
-      class="absolute left-1/2 top-32 z-10 flex translate-x-[-50%] flex-col items-center rounded-md bg-white p-5"
-    >
-      <!-- TODO: Could pass all of this into a reusable modal component with 'slots' -->
-      <!-- TODO: Would be nice to have an X button in the top right -->
-      <h1 class="mb-2 text-2xl">Add a New Role</h1>
-      <form class="flex flex-col">
-        <input
-          v-model="newRoleName"
-          type="text"
-          placeholder="Role Name"
-          class="mb-2 border-2 p-1"
-        />
-        <input
-          v-model="newRoleSalary"
-          @input="validateSalary"
-          type="text"
-          placeholder="Role Salary"
-          class="border-2 p-1"
-        />
-        <p v-if="salaryValidationError" class="text-sm text-red-500">
-          Please enter a valid number
-        </p>
-      </form>
-      <div class="mt-2">
-        <button @click="closeModal(false)" class="rounded-lg border-black p-2">
-          Cancel
-        </button>
-        <button
-          @click="closeModal(true)"
-          class="ml-4 rounded-lg border-black bg-blue-600 p-2 text-white"
+  <teleport to="#modal">
+    <transition name="modal">
+      <div
+        v-if="modalOpen"
+        class="fixed top-0 left-0 h-screen w-screen bg-black bg-opacity-70"
+      >
+        <div
+          ref="modal"
+          class="absolute left-1/2 top-32 z-10 flex translate-x-[-50%] flex-col items-center rounded-md bg-white p-5"
         >
-          Submit
-        </button>
+          <div class="absolute mr-8 mb-5 w-full text-end">
+            <button
+              @click="closeModal(false)"
+              class="rounded-md border-2 p-[2px] shadow-sm hover:bg-neutral-200"
+            >
+              X
+            </button>
+          </div>
+          <h1 class="mb-2 mt-4 text-2xl">Add a New Role</h1>
+          <form class="flex flex-col">
+            <input
+              v-model="newRoleName"
+              type="text"
+              placeholder="Role Name"
+              class="mb-2 border-2 p-1"
+            />
+            <input
+              v-model="newRoleSalary"
+              @input="validateSalary"
+              type="text"
+              placeholder="Role Salary"
+              class="border-2 p-1"
+            />
+            <p v-if="salaryValidationError" class="text-sm text-red-500">
+              Please enter a valid number
+            </p>
+          </form>
+          <div class="mt-2">
+            <button
+              @click="closeModal(false)"
+              class="rounded-lg border-black p-2"
+            >
+              Cancel
+            </button>
+            <button
+              @click="closeModal(true)"
+              class="ml-4 rounded-lg border-black bg-blue-600 p-2 text-white"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
-    <div
-      v-if="modalOpen"
-      class="fixed top-0 left-0 h-screen w-screen bg-black bg-opacity-70"
-    ></div>
+    </transition>
   </teleport>
 </template>
+<style>
+.modal-enter-active,
+.modal-leave-active {
+  transition: all 0.25s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+  transform: scale(1.1);
+}
+</style>
