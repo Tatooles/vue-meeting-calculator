@@ -5,6 +5,11 @@ import { store } from "../store.js";
 
 const stopwatch = useStopwatch(0, false);
 
+const resetStopwatch = () => {
+  stopwatch.reset();
+  stopwatch.pause();
+};
+
 watch(stopwatch.seconds, async () => {
   store.setTimerSeconds(stopwatch.seconds);
 });
@@ -77,7 +82,7 @@ const secondRight = computed(() => {
     </button>
   </div>
   <button
-    @click="stopwatch.reset()"
+    @click="resetStopwatch()"
     class="mt-4 rounded-md border-2 border-white p-2"
   >
     Reset
