@@ -79,6 +79,7 @@ onMounted(() => {
 </script>
 
 <template>
+  <h1 class="mb-4 text-lg underline">Participants</h1>
   <ul>
     <template v-for="role in roles">
       <li class="mb-2 flex border-2 border-white p-2">
