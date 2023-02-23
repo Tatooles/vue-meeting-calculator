@@ -48,14 +48,14 @@ const validateNumber = () => {
       @input="validateNumber"
       type="text"
       placeholder="HH"
-      class="mr-6 w-1/3 border-2 border-white bg-inherit text-center text-4xl"
+      class="mr-6 w-1/3 border-2 bg-inherit text-center text-4xl dark:border-white"
     />
     <input
       v-model="minutes"
       @input="validateNumber"
       type="text"
       placeholder="MM"
-      class="w-1/3 border-2 border-white bg-inherit text-center text-4xl"
+      class="w-1/3 border-2 bg-inherit text-center text-4xl dark:border-white"
     />
   </div>
   <!-- TODO: Stop this from shifting the whole thing -->

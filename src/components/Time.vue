@@ -24,14 +24,14 @@ const setInput = () => {
   <div class="flex justify-around">
     <button
       @click="setTimer"
-      class="w-full border-x-2 border-t-2 border-white"
+      class="w-full border-x-2 border-t-2 dark:border-white"
       :class="showTimer ? '' : 'border-b-2'"
     >
       Timer
     </button>
     <button
       @click="setInput"
-      class="w-full border-x-2 border-t-2 border-white"
+      class="w-full border-x-2 border-t-2 dark:border-white"
       :class="showTimer ? 'border-b-2' : ''"
     >
       Time input
@@ -40,7 +40,7 @@ const setInput = () => {
 
   <!-- This div contains just the time stuff -->
   <div
-    class="flex h-60 flex-col items-center justify-center border-2 border-t-0 border-white"
+    class="flex h-60 flex-col items-center justify-center border-2 border-t-0 dark:border-white"
   >
     <div v-show="showTimer">
       <Timer />

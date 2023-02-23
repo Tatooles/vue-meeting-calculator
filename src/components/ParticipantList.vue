@@ -82,7 +82,7 @@ onMounted(() => {
   <h1 class="mb-4 text-lg underline">Participants</h1>
   <ul>
     <template v-for="role in roles">
-      <li class="mb-2 flex border-2 border-white p-2">
+      <li class="mb-2 flex border-2 p-2 dark:border-white">
         <div
           class="w-3/5 overflow-hidden overflow-ellipsis whitespace-nowrap text-start"
         >
@@ -109,7 +109,7 @@ onMounted(() => {
       >
         <div
           ref="modal"
-          class="absolute left-1/2 top-32 z-10 flex translate-x-[-50%] flex-col items-center rounded-md bg-white p-5"
+          class="absolute left-1/2 top-32 z-10 flex translate-x-[-50%] flex-col items-center rounded-md p-5 dark:bg-white"
         >
           <div class="absolute mr-8 mb-5 w-full text-end">
             <button
