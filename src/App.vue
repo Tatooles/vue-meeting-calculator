@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import Body from "./components/Body.vue";
+import { ref } from "vue";
+
+const darkMode = ref(false);
 </script>
 
 <template>
   <div
+    :class="{ dark: darkMode }"
     class="relative mx-auto flex min-h-screen w-full flex-col bg-zinc-900 p-5 text-center text-white md:w-3/4"
   >
     <header>
-      <h1 class="mb-5 text-2xl font-bold md:text-4xl">
+      <h1 class="mb-5 text-2xl font-bold dark:text-sm md:text-4xl">
         Meeting Cost Calculator
       </h1>
     </header>
