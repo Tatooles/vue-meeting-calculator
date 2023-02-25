@@ -14,6 +14,11 @@ const darkMode = ref(false);
         <h1 class="mb-5 text-2xl font-bold md:text-4xl">
           Meeting Cost Calculator
         </h1>
+        <div class="absolute top-6 right-10">
+          <button @click="darkMode ? (darkMode = false) : (darkMode = true)">
+            Toggle Dark Mode
+          </button>
+        </div>
       </header>
 
       <Body />
