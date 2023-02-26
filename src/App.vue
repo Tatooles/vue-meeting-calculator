@@ -6,7 +6,7 @@ const darkMode = ref(false);
 </script>
 
 <template>
-  <div :class="{ dark: darkMode }">
+  <div :class="{ dark: darkMode, 'bg-zinc-900': darkMode }">
     <div
       class="relative mx-auto flex min-h-screen w-full flex-col p-5 text-center dark:bg-zinc-900 dark:text-white md:w-3/4"
     >
