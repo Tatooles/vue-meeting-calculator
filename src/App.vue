@@ -8,16 +8,13 @@ const darkMode = ref(false);
 <template>
   <div :class="{ dark: darkMode, 'bg-zinc-900': darkMode }">
     <div
-      class="relative mx-auto flex min-h-screen w-full flex-col p-5 text-center dark:bg-zinc-900 dark:text-white md:w-3/4"
+      class="relative mx-auto flex min-h-screen w-full flex-col py-5 text-center dark:bg-zinc-900 dark:text-white md:w-3/4"
     >
       <header>
         <h1 class="mb-5 text-2xl font-bold md:text-4xl">
           Meeting Cost Calculator
         </h1>
-        <div class="absolute top-6 right-10">
-          <!-- <button @click="darkMode ? (darkMode = false) : (darkMode = true)">
-            Toggle Dark Mode
-          </button> -->
+        <div class="absolute top-16 right-4 md:top-6 md:right-10">
           <button v-if="!darkMode" @click="darkMode = true">
             <svg viewBox="0 0 24 24" fill="none" class="h-8 w-8">
               <path
