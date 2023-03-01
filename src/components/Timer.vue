@@ -56,13 +56,13 @@ const secondRight = computed(() => {
     <button
       v-show="!stopwatch.isRunning.value"
       @click="stopwatch.start()"
-      class="mr-4 rounded-md border-2 border-white p-2"
+      class="mr-4 rounded-md border-2 border-black p-2 dark:border-white"
     >
       Start
     </button>
     <button
       v-show="stopwatch.isRunning.value"
-      class="border-whit mr-4 rounded-md border-2 p-2 shadow-inner shadow-white"
+      class="darkborder-white mr-4 rounded-md border-2 border-black p-2 shadow-inner shadow-black dark:shadow-white"
     >
       Start
     </button>
@@ -70,20 +70,20 @@ const secondRight = computed(() => {
     <button
       v-show="stopwatch.isRunning.value"
       @click="stopwatch.pause()"
-      class="rounded-md border-2 border-white p-2"
+      class="rounded-md border-2 border-black p-2 dark:border-white"
     >
       Stop
     </button>
     <button
       v-show="!stopwatch.isRunning.value"
-      class="rounded-md border-2 border-white p-2 shadow-inner shadow-white"
+      class="rounded-md border-2 border-black p-2 shadow-inner shadow-black dark:border-white dark:shadow-white"
     >
       Stop
     </button>
   </div>
   <button
     @click="resetStopwatch()"
-    class="mt-4 rounded-md border-2 border-white p-2"
+    class="mt-4 rounded-md border-2 border-black p-2 dark:border-white"
   >
     Reset
   </button>
