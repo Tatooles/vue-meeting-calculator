@@ -2,7 +2,7 @@
 import Body from "./components/Body.vue";
 import { ref } from "vue";
 
-const darkMode = ref(false);
+const darkMode = ref(true);
 </script>
 
 <template>
